@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Shrill - By Lucky Shrill | Your Anime Discovery Platform</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <a href="#" class="logo">Anime Shrill</a>
+      <form class="search-form" id="searchForm">
+        <input type="text" class="search-input" placeholder="Search anime..." id="searchInput">
+        <button type="submit" class="search-button">Search</button>
+      </form>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Search Results -->
+    <section class="search-results" id="searchResults"></section>
+
+
+
+
+    <!-- Top Anime Section -->
+    <section>
+      <h2 class="section-title">Top 10 Anime of the Week</h2>
+      <div class="carousel" id="topAnimeCarousel"></div>
+    </section>
+
+
+    <!-- New Releases Section -->
+    <section>
+      <h2 class="section-title">New Releases</h2>
+      <div class="carousel releases-grid" id="newReleases"></div>
+    </section>
+
+    <!-- Top Anime of All Time Section -->
+    <section class="top-all-time">
+      <h2 class="section-title">Top Anime of All Time</h2>
+      <div class="carousel top-all-time-grid" id="topAllTimeGrid"></div>
+    </section>
+
+    <!-- Synopsis Popup -->
+    <div class="synopsis-popup" id="synopsisPopup">
+      <div class="synopsis-content">
+        <button class="close-button" onclick="closeSynopsis()">×</button>
+        <div id="synopsisContent"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
