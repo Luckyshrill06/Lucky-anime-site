@@ -4,45 +4,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anime Shrill - By Lucky Shrill | Your Anime Discovery Platform</title>
+  <title>Lucky Shrill | Your Ultimate Anime Discovery Platform</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+  <!-- Particle Background -->
+  <div id="particles-js"></div>
+  
   <header>
     <nav>
-      <a href="#" class="logo">Anime Shrill</a>
+      <a href="https://www.youtube.com/@luckyshrill" class="logo">Lucky Shrill</a>
+      <div class="nav-links">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#top-anime" class="nav-link">Top Anime</a>
+        <a href="#seasonal" class="nav-link">Seasonal</a>
+        <a href="#genres" class="nav-link">Genres</a>
+      </div>
       <form class="search-form" id="searchForm">
         <input type="text" class="search-input" placeholder="Search anime..." id="searchInput">
-        <button type="submit" class="search-button">Search</button>
+        <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
       </form>
     </nav>
   </header>
 
-  <main>
+  <main id="home">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Discover Your Next Favorite Anime</h1>
+        <p class="hero-subtitle">Explore thousands of anime titles, reviews and recommendations</p>
+        <button class="cta-button pulse" onclick="scrollToSection('top-anime')">Start Exploring <i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="hero-slider">
+        <div class="slider-item active" style="background-image: url('https://wallpapercave.com/wp/wp14714960.jpg')"></div>
+        <div class="slider-item" style="background-image: url('https://wallpapercave.com/dwp1x/wp3477347.jpg')"></div>
+        <div class="slider-item" style="background-image: url('https://wallpapercave.com/wp/wp12643607.jpg')"></div>
+        <div class="slider-item" style="background-image: url('https://wallpapercave.com/wp/wp14263695.jpg')"></div>
+      </div>
+    </section>
+
     <!-- Search Results -->
     <section class="search-results" id="searchResults"></section>
 
-
-
-
     <!-- Top Anime Section -->
-    <section>
-      <h2 class="section-title">Top 10 Anime of the Week</h2>
+    <section class="section-wrapper" id="top-anime">
+      <div class="section-header">
+        <h2 class="section-title"><i class="fas fa-crown"></i> Top 10 Anime of the Week</h2>
+        <a href="#" class="view-all" onclick="fetchAllTopAnime()">View All <i class="fas fa-chevron-right"></i></a>
+      </div>
       <div class="carousel" id="topAnimeCarousel"></div>
     </section>
 
-
     <!-- New Releases Section -->
-    <section>
-      <h2 class="section-title">New Releases</h2>
+    <section class="section-wrapper" id="seasonal">
+      <div class="section-header">
+        <h2 class="section-title"><i class="fas fa-bolt"></i> New Releases</h2>
+        <a href="#" class="view-all" onclick="fetchAllNewReleases()">View All <i class="fas fa-chevron-right"></i></a>
+      </div>
       <div class="carousel releases-grid" id="newReleases"></div>
     </section>
 
     <!-- Top Anime of All Time Section -->
-    <section class="top-all-time">
-      <h2 class="section-title">Top Anime of All Time</h2>
+    <section class="section-wrapper top-all-time">
+      <div class="section-header">
+        <h2 class="section-title"><i class="fas fa-trophy"></i> Top Anime of All Time</h2>
+        <a href="#" class="view-all" onclick="fetchAllTopAllTime()">View All <i class="fas fa-chevron-right"></i></a>
+      </div>
       <div class="carousel top-all-time-grid" id="topAllTimeGrid"></div>
+    </section>
+
+    <!-- Popular Genres Section -->
+    <section class="section-wrapper" id="genres">
+      <div class="section-header">
+        <h2 class="section-title"><i class="fas fa-tags"></i> Popular Genres</h2>
+      </div>
+      <div class="genres-grid" id="genresGrid"></div>
+      <div class="genre-results" id="genreResults"></div>
+    </section>
+
+    <!-- YouTube Subscription Section -->
+    <section class="youtube-sub">
+      <div class="youtube-sub-content">
+        <h2>Subscribe to Our YouTube Channel</h2>
+        <p>Get the latest anime reviews, recommendations and news on our YouTube channel</p>
+        <a href="https://www.youtube.com/@luckyshrill" target="_blank" class="cta-button youtube-button">
+          Subscribe <i class="fab fa-youtube"></i>
+        </a>
+      </div>
     </section>
 
     <!-- Synopsis Popup -->
@@ -52,8 +103,34 @@
         <div id="synopsisContent"></div>
       </div>
     </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+      <i class="fas fa-arrow-up"></i>
+    </button>
   </main>
 
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">Lucky Shrill</div>
+      <div class="footer-links">
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+       
+      </div>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-discord"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Lucky Shrill. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="script.js"></script>
 </body>
 
