@@ -1,24 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lucky Shrill | Your Ultimate Anime Discovery Platform</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: white;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+      cursor: pointer;
+    }
 
+    @media (max-width: 768px) {
+      nav {
+        position: absolute; /* not sticky/fixed on mobile */
+        display: block;
+      
+        padding: 20px;
+        position: relative;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #000;
+        padding-top: 20px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links .nav-link {
+        padding: 10px 20px;
+        text-align: center;
+        border-top: 1px solid #222;
+      }
+
+      .search-form {
+        width: 100%;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
 <body>
   <!-- Particle Background -->
   <div id="particles-js"></div>
-  
+
   <header>
     <nav>
       <a href="https://www.youtube.com/@luckyshrill" class="logo">Lucky Shrill</a>
-      <div class="nav-links">
-        <a href="#home" class="nav-link active">Home</a>
+      <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link">Home</a>
         <a href="#top-anime" class="nav-link">Top Anime</a>
         <a href="#seasonal" class="nav-link">Seasonal</a>
         <a href="#genres" class="nav-link">Genres</a>
@@ -67,7 +120,7 @@
       <div class="carousel releases-grid" id="newReleases"></div>
     </section>
 
-    <!-- Top Anime of All Time Section -->
+    <!-- Top All-Time Section -->
     <section class="section-wrapper top-all-time">
       <div class="section-header">
         <h2 class="section-title"><i class="fas fa-trophy"></i> Top Anime of All Time</h2>
@@ -76,7 +129,7 @@
       <div class="carousel top-all-time-grid" id="topAllTimeGrid"></div>
     </section>
 
-    <!-- Popular Genres Section -->
+    <!-- Genres Section -->
     <section class="section-wrapper" id="genres">
       <div class="section-header">
         <h2 class="section-title"><i class="fas fa-tags"></i> Popular Genres</h2>
@@ -85,7 +138,7 @@
       <div class="genre-results" id="genreResults"></div>
     </section>
 
-    <!-- YouTube Subscription Section -->
+    <!-- YouTube Section -->
     <section class="youtube-sub">
       <div class="youtube-sub-content">
         <h2>Subscribe to Our YouTube Channel</h2>
@@ -104,10 +157,8 @@
       </div>
     </div>
 
-    <!-- Scroll to Top Button -->
-    <button class="scroll-top" id="scrollTop">
-      <i class="fas fa-arrow-up"></i>
-    </button>
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></button>
   </main>
 
   <footer>
@@ -116,7 +167,6 @@
       <div class="footer-links">
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
-       
       </div>
       <div class="social-links">
         <a href="#"><i class="fab fa-youtube"></i></a>
@@ -130,8 +180,32 @@
     </div>
   </footer>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="script.js"></script>
-</body>
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const navItems = document.querySelectorAll('.nav-link');
 
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburger.classList.toggle('open');
+      hamburger.innerHTML = navLinks.classList.contains('active')
+        ? '<i class="fas fa-times"></i>'
+        : '<i class="fas fa-bars"></i>';
+    });
+
+    // Close nav menu on nav-link click
+    navItems.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          navLinks.classList.remove('active');
+          hamburger.classList.remove('open');
+          hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+      });
+    });
+  </script>
+</body>
 </html>
