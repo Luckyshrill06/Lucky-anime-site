@@ -11,6 +11,27 @@ function scrollToSection(sectionId) {
     });
 }
 
+// Updated toggleMenu function
+function toggleMenu() {
+    const navLinks = document.getElementById("navLinks");
+    const navOverlay = document.getElementById("navOverlay");
+    const body = document.body;
+    const hamburger = document.querySelector('.hamburger');
+    
+    navLinks.classList.toggle("active");
+    navOverlay.classList.toggle("active");
+    body.classList.toggle("no-scroll");
+    
+    // Toggle hamburger icon
+    if (navLinks.classList.contains('active')) {
+        hamburger.innerHTML = '<i class="fas fa-times"></i>';
+        hamburger.setAttribute('aria-expanded', 'true');
+    } else {
+        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+        hamburger.setAttribute('aria-expanded', 'false');
+    }
+}
+
 async function fetchAnimeDetails(animeId) {
     try {
         document.getElementById('synopsisContent').innerHTML = '<div class="loading-spinner"></div>';
@@ -563,13 +584,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Close synopsis popup with Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeSynopsis();
-        }
-    });
-
     // Navigation link clicks
     document.querySelectorAll('.nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
@@ -583,6 +597,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             this.classList.add('active');
         });
+    });
+
+    // Close menu when clicking on nav links (mobile only)
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                toggleMenu();
+            }
+        });
+    });
+
+    // Close menu when pressing Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && window.innerWidth <= 768) {
+            const navLinks = document.getElementById("navLinks");
+            if (navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        }
     });
 
     // Initialize

@@ -37,14 +37,14 @@
   }
 
   .hamburger {
-    display: block;
+    display: flex;
   }
 
   .nav-links {
     display: none;
     flex-direction: column;
     width: 100%;
-    background-color: #000;
+    background-color: #0d002eef;
     padding-top: 20px;
   }
 
@@ -85,19 +85,20 @@
   <header>
     <nav>
       <a href="https://www.youtube.com/@luckyshrill" class="logo">Lucky Shrill</a>
-      <button class="hamburger" onclick="toggleMenu()">
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
       </button>
+      <div class="nav-overlay" id="navOverlay" onclick="toggleMenu()"></div>
       <div class="nav-links" id="navLinks">
         <a href="#home" class="nav-link active">Home</a>
         <a href="#top-anime" class="nav-link">Top Anime</a>
         <a href="#seasonal" class="nav-link">Seasonal</a>
         <a href="#genres" class="nav-link">Genres</a>
+        <form class="search-form" id="searchForm">
+          <input type="text" class="search-input" placeholder="Search anime..." id="searchInput" />
+          <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+        </form>
       </div>
-      <form class="search-form" id="searchForm">
-        <input type="text" class="search-input" placeholder="Search anime..." id="searchInput" />
-        <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
-      </form>
     </nav>
   </header>
 
@@ -111,7 +112,7 @@
       </div>
       <div class="hero-slider">
         <div class="slider-item active" style="background-image: url('https://wallpapercave.com/wp/wp14714960.jpg')"></div>
-        <div class="slider-item" style="background-image: url('https://wallpapercave.com/dwp1x/wp3477347.jpg')"></div>
+        <div class="slider-item" style="background-image: url('https://images3.alphacoders.com/134/thumb-1920-1342304.jpeg')"></div>
         <div class="slider-item" style="background-image: url('https://wallpapercave.com/wp/wp12643607.jpg')"></div>
         <div class="slider-item" style="background-image: url('https://wallpapercave.com/wp/wp14263695.jpg')"></div>
       </div>
@@ -202,10 +203,25 @@
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
-    function toggleMenu() {
-      const navLinks = document.getElementById("navLinks");
-      navLinks.classList.toggle("active");
-    }
+ function toggleMenu() {
+  const navLinks = document.getElementById("navLinks");
+  const navOverlay = document.getElementById("navOverlay");
+  const body = document.body;
+  const hamburger = document.querySelector('.hamburger');
+  
+  navLinks.classList.toggle("active");
+  navOverlay.classList.toggle("active");
+  body.classList.toggle("no-scroll");
+  
+  // Toggle hamburger icon
+  if (navLinks.classList.contains('active')) {
+    hamburger.innerHTML = '<i class="fas fa-times"></i>';
+    hamburger.setAttribute('aria-expanded', 'true');
+  } else {
+    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+}
   </script>
   <script src="script.js"></script>
 </body>
