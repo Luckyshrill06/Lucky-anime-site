@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Discover your next favorite anime with Lucky Shrill. Explore thousands of anime titles, reviews, recommendations, top lists, and seasonal updates.">
   <title>Lucky Shrill | Your Ultimate Anime Discovery Platform</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet" />
@@ -25,56 +26,56 @@
     }
 
     @media (max-width: 768px) {
-  nav {
-    position: static;
-    display: block;
-    padding: 20px;
-    position: relative;
-  }
+      nav {
+        position: static;
+        display: block;
+        padding: 20px;
+        position: relative;
+      }
 
-  .logo {
-    display: none;
-  }
+      .logo {
+        display: none;
+      }
 
-  .hamburger {
-    display: flex;
-  }
+      .hamburger {
+        display: flex;
+      }
 
-  .nav-links {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background-color: #0d002eef;
-    padding-top: 20px;
-  }
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #0d002eef;
+        padding-top: 20px;
+      }
 
-  .nav-links.active {
-    display: flex;
-  }
+      .nav-links.active {
+        display: flex;
+      }
 
-  .nav-links .nav-link {
-    padding: 10px 20px;
-    text-align: center;
-    border-top: 1px solid #222;
-  }
+      .nav-links .nav-link {
+        padding: 10px 20px;
+        text-align: center;
+        border-top: 1px solid #222;
+      }
 
-  /* Keep search form width full and styled nicely */
-  .search-form {
-    width: 100%;
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
-  }
+      /* Keep search form width full and styled nicely */
+      .search-form {
+        width: 100%;
+        margin-top: 10px;
+        display: flex;
+        gap: 10px;
+      }
 
-  .search-input {
-    flex: 1;
-    padding: 8px;
-  }
+      .search-input {
+        flex: 1;
+        padding: 8px;
+      }
 
-  .search-button {
-    padding: 8px 12px;
-  }
-}
+      .search-button {
+        padding: 8px 12px;
+      }
+    }
   </style>
 </head>
 
@@ -84,7 +85,11 @@
 
   <header>
     <nav>
-      <a href="https://www.youtube.com/@luckyshrill" class="logo">Lucky Shrill</a>
+      <a href="https://www.youtube.com/@luckyshrill" class="logo">
+        <img src="1.png" alt="Lucky Shrill" class="logo-desktop">
+        <img src="1.png" alt="Lucky Shrill" class="logo-mobile">
+      </a>
+
       <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
       </button>
@@ -94,6 +99,7 @@
         <a href="#top-anime" class="nav-link">Top Anime</a>
         <a href="#seasonal" class="nav-link">Seasonal</a>
         <a href="#genres" class="nav-link">Genres</a>
+        <a href="#youtube-playlists" class="nav-link">YouTube Playlists</a>
         <form class="search-form" id="searchForm">
           <input type="text" class="search-input" placeholder="Search anime..." id="searchInput" />
           <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
@@ -103,24 +109,30 @@
   </header>
 
   <main id="home">
+  <!-- Search Results -->
+  <section class="search-results" id="searchResults"></section>
+
+
+
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-content">
         <h1 class="hero-title">Discover Your Next Favorite Anime</h1>
         <p class="hero-subtitle">Explore thousands of anime titles, reviews and recommendations</p>
-        <button class="cta-button pulse" onclick="scrollToSection('top-anime')">Start Exploring <i class="fas fa-arrow-right"></i></button>
+        <button class="cta-button pulse" onclick="scrollToSection('top-anime')">Start Exploring <i
+            class="fas fa-arrow-right"></i></button>
       </div>
       <div class="hero-slider">
-        <div class="slider-item active" style="background-image: url('https://wallpapercave.com/wp/wp14714960.jpg')"></div>
-        <div class="slider-item" style="background-image: url('https://images3.alphacoders.com/134/thumb-1920-1342304.jpeg')"></div>
+        <div class="slider-item active" style="background-image: url('https://wallpapercave.com/wp/wp14714960.jpg')">
+        </div>
+        <div class="slider-item"
+          style="background-image: url('https://images3.alphacoders.com/134/thumb-1920-1342304.jpeg')"></div>
         <div class="slider-item" style="background-image: url('https://wallpapercave.com/wp/wp12643607.jpg')"></div>
         <div class="slider-item" style="background-image: url('https://wallpapercave.com/wp/wp14263695.jpg')"></div>
       </div>
     </section>
 
-    <!-- Search Results -->
-    <section class="search-results" id="searchResults"></section>
-
+  
     <!-- Top Anime Section -->
     <section class="section-wrapper" id="top-anime">
       <div class="section-header">
@@ -157,6 +169,47 @@
       <div class="genre-results" id="genreResults"></div>
     </section>
 
+    <!-- youtube playlist-->
+    <section class="youtube-playlists-section" id="youtube-playlists">
+      <div class="section-header">
+        <h2 class="section-title"><i class="fab fa-youtube"></i> Explore Our Playlists</h2>
+      </div>
+
+      <div class="playlists-grid">
+
+        <!-- One Piece Playlist -->
+        <div class="playlist-card">
+          <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/videoseries?si=VA4OSoKB4you8A82&amp;list=PL-Nzvct2F3AnlK1O7gcb7OGG2Lz2G6VJo"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <h3>One Piece Explained in Hindi</h3>
+        </div>
+
+        <!-- Naruto Playlist -->
+        <div class="playlist-card">
+          <iframe src="https://www.youtube.com/embed/videoseries?list=PL-Nzvct2F3AnnJLgl0HjzK3K95SEMHZmm"
+            title="Naruto Explained" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+          </iframe>
+          <h3>Naruto Explained in Hindi</h3>
+        </div>
+
+        <!-- Bleach Playlist -->
+        <div class="playlist-card">
+          <iframe src="https://www.youtube.com/embed/videoseries?list=PL-Nzvct2F3AmivSA_gz6muKQHbeAnq-Ba"
+            title="Bleach Explained" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen loading="lazy">
+          </iframe>
+          <h3>Bleach Explained in Hindi</h3>
+        </div>
+
+      </div>
+    </section>
+
+
+
+
+
     <!-- YouTube Subscription Section -->
     <section class="youtube-sub">
       <div class="youtube-sub-content">
@@ -184,16 +237,18 @@
 
   <footer>
     <div class="footer-content">
-      <div class="footer-logo">Lucky Shrill</div>
+      <a href="index.html" class="footer-logo">
+        <img src="1.png" alt="Lucky Shrill Logo" class="footer-logo-img">
+    </a>
       <div class="footer-links">
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </div>
       <div class="social-links">
-        <a href="#"><i class="fab fa-youtube"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-discord"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/@luckyshrill"><i class="fab fa-youtube"></i></a>
+        <a href="https://x.com/lucky_shrill"><i class="fab fa-twitter"></i></a>
+        <!-- <a href="#"><i class="fab fa-discord"></i></a> -->
+        <a href="https://www.instagram.com/lucky_shrill_yt"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
     <div class="footer-bottom">
@@ -203,25 +258,25 @@
 
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
- function toggleMenu() {
-  const navLinks = document.getElementById("navLinks");
-  const navOverlay = document.getElementById("navOverlay");
-  const body = document.body;
-  const hamburger = document.querySelector('.hamburger');
-  
-  navLinks.classList.toggle("active");
-  navOverlay.classList.toggle("active");
-  body.classList.toggle("no-scroll");
-  
-  // Toggle hamburger icon
-  if (navLinks.classList.contains('active')) {
-    hamburger.innerHTML = '<i class="fas fa-times"></i>';
-    hamburger.setAttribute('aria-expanded', 'true');
-  } else {
-    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-    hamburger.setAttribute('aria-expanded', 'false');
-  }
-}
+    function toggleMenu() {
+      const navLinks = document.getElementById("navLinks");
+      const navOverlay = document.getElementById("navOverlay");
+      const body = document.body;
+      const hamburger = document.querySelector('.hamburger');
+
+      navLinks.classList.toggle("active");
+      navOverlay.classList.toggle("active");
+      body.classList.toggle("no-scroll");
+
+      // Toggle hamburger icon
+      if (navLinks.classList.contains('active')) {
+        hamburger.innerHTML = '<i class="fas fa-times"></i>';
+        hamburger.setAttribute('aria-expanded', 'true');
+      } else {
+        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    }
   </script>
   <script src="script.js"></script>
 </body>

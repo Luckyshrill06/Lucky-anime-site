@@ -683,3 +683,22 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
 });
+
+// Animate playlist cards on scroll
+function animatePlaylistsOnScroll() {
+    const playlistCards = document.querySelectorAll('.playlist-card');
+    
+    playlistCards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 100) {
+        card.classList.add('animate');
+      }
+    });
+  }
+  
+  // Trigger animation on scroll
+  window.addEventListener('scroll', animatePlaylistsOnScroll);
+  
+  // Also trigger animation on page load
+  document.addEventListener('DOMContentLoaded', animatePlaylistsOnScroll);
+  

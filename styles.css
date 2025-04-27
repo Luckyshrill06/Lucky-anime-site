@@ -1,3 +1,27 @@
+.logo img {
+    height: 50px; /* Desktop logo size */
+    width: auto;
+  }
+  
+  .logo-mobile {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .logo-desktop {
+      display: none;
+    }
+    .logo-mobile {
+      display: block;
+      height: 40px; /* Mobile logo size (slightly smaller) */
+      width: auto;
+    }
+  }
+  
+  
+
+
+
 /* Base Styles */
 * {
     margin: 0;
@@ -1266,3 +1290,80 @@ footer {
   .nav-links.active .nav-link:nth-child(3) { animation-delay: 0.3s; }
   .nav-links.active .nav-link:nth-child(4) { animation-delay: 0.4s; }
   .nav-links.active .search-form { animation-delay: 0.5s; }
+
+
+
+
+
+  /* YouTube Playlists Section */
+.youtube-playlists-section {
+    margin-top: 4rem;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 3rem 2rem;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .section-header {
+    margin-bottom: 2rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .playlists-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+  
+  .playlist-card {
+    background-color: rgba(30, 30, 60, 0.7);
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    opacity: 0; /* start hidden */
+    transform: translateY(30px);
+    transition: all 0.5s ease;
+  }
+  
+  .playlist-card iframe {
+    width: 100%;
+    height: 200px;
+    border-radius: 8px;
+  }
+  
+  .playlist-card h3 {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #ff8a00;
+  }
+  
+  /* Animation */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .playlist-card.animate {
+    animation: fadeInUp 0.8s ease forwards;
+  }
+  
+  .footer-logo-img {
+    height: 50px; /* Adjust height as needed */
+    width: auto;
+  }
