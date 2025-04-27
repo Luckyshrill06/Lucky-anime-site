@@ -332,6 +332,8 @@ async function fetchAllTopAnime() {
         if (allTopAnime.length === 0) {
             const response = await fetch('https://api.jikan.moe/v4/top/anime');
             allTopAnime = (await response.json()).data;
+            // Sort by score in descending order
+            allTopAnime.sort((a, b) => (b.score || 0) - (a.score || 0));
         }
         displayAllResults(allTopAnime, 'Top Anime');
     } catch (error) {
@@ -356,6 +358,8 @@ async function fetchAllTopAllTime() {
         if (allTopAllTime.length === 0) {
             const response = await fetch('https://api.jikan.moe/v4/top/anime?filter=bypopularity');
             allTopAllTime = (await response.json()).data;
+            // Sort by score in descending order
+            allTopAllTime.sort((a, b) => (b.score || 0) - (a.score || 0));
         }
         displayAllResults(allTopAllTime, 'Top Anime of All Time');
     } catch (error) {
@@ -479,12 +483,14 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     initGenres();
 
-    // Fetch Top Anime
+    // Fetch Top Anime (now sorted by rating)
     async function fetchTopAnime() {
         try {
             const response = await fetch('https://api.jikan.moe/v4/top/anime?limit=10');
             const data = await response.json();
-            displayTopAnime(data.data);
+            // Sort by score in descending order
+            const sortedData = data.data.sort((a, b) => (b.score || 0) - (a.score || 0));
+            displayTopAnime(sortedData);
         } catch (error) {
             console.error('Error fetching top anime:', error);
         }
@@ -542,12 +548,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100);
     }
 
-    // Fetch Top Anime of All Time
+    // Fetch Top Anime of All Time (now sorted by rating)
     async function fetchTopAllTimeAnime() {
         try {
             const response = await fetch('https://api.jikan.moe/v4/top/anime?filter=bypopularity&limit=15');
             const data = await response.json();
-            displayTopAllTimeAnime(data.data);
+            // Sort by score in descending order
+            const sortedData = data.data.sort((a, b) => (b.score || 0) - (a.score || 0));
+            displayTopAllTimeAnime(sortedData);
         } catch (error) {
             console.error('Error fetching top all time anime:', error);
         }
@@ -701,4 +709,3 @@ function animatePlaylistsOnScroll() {
   
   // Also trigger animation on page load
   document.addEventListener('DOMContentLoaded', animatePlaylistsOnScroll);
-  
