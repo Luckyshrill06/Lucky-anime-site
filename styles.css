@@ -1,5 +1,5 @@
 .logo img {
-    height: 50px; /* Desktop logo size */
+    height: 40px; /* Desktop logo size */
     width: auto;
   }
   
@@ -473,40 +473,83 @@ main {
     color: #ff8a00;
 }
 
-/* Genres Grid */
+/* ====== UPDATED GENRE SECTION START ====== */
 .genres-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 1rem;
-}
-
-.genre-card {
-    background: linear-gradient(135deg, rgba(255, 138, 0, 0.2) 0%, rgba(255, 0, 88, 0.2) 100%);
-    padding: 1.5rem 1rem;
-    border-radius: 8px;
-    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  @media (min-width: 1024px) {
+    .genres-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+  
+  @media (max-width: 1023px) and (min-width: 768px) {
+    .genres-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .genres-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  .genre-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-}
-
-.genre-card:hover {
-    transform: translateY(-5px);
-    background: linear-gradient(135deg, rgba(255, 138, 0, 0.3) 0%, rgba(255, 0, 88, 0.3) 100%);
-    box-shadow: 0 5px 15px rgba(255, 138, 0, 0.2);
-}
-
-.genre-card i {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-    color: #ff8a00;
-}
-
-.genre-card h3 {
-    font-size: 1.1rem;
+    height: 220px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .genre-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(255, 138, 0, 0.3);
+  }
+  
+  .genre-bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
+    transition: transform 0.3s ease;
+    display: block;
+  }
+  
+  .genre-card:hover .genre-bg-image {
+    transform: scale(1.05);
+  }
+  
+  .genre-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
     color: white;
-}
+  }
+  
+  .genre-overlay i {
+    font-size: 2rem;
+    color: #ff8a00;
+    margin-bottom: 0.5rem;
+  }
+  
+  .genre-overlay h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  /* ====== END UPDATED GENRE SECTION ====== */
+  
 .youtube-sub {
     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     padding: 3rem;
@@ -1159,7 +1202,7 @@ footer {
   
   /* Logo Styles */
   .logo-img {
-    height: 50px;
+    height: 40px;
     width: auto;
   }
   

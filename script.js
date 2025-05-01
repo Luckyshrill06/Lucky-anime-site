@@ -225,31 +225,77 @@ function initParticles() {
     });
 }
 
-// Initialize genres
+// Updated: Initialize genres with hardcoded background images
 function initGenres() {
     const genres = [
-        { name: "Action", icon: "fa-fist-raised", mal_id: 1 },
-        { name: "Adventure", icon: "fa-mountain", mal_id: 2 },
-        { name: "Comedy", icon: "fa-laugh-squint", mal_id: 4 },
-        { name: "Drama", icon: "fa-theater-masks", mal_id: 8 },
-        { name: "Fantasy", icon: "fa-dragon", mal_id: 10 },
-        { name: "Horror", icon: "fa-ghost", mal_id: 14 },
-        { name: "Mystery", icon: "fa-search", mal_id: 7 },
-        { name: "Romance", icon: "fa-heart", mal_id: 22 },
-        { name: "Sci-Fi", icon: "fa-rocket", mal_id: 24 },
-        { name: "Slice of Life", icon: "fa-home", mal_id: 36 },
-        { name: "Sports", icon: "fa-running", mal_id: 30 },
-        { name: "Supernatural", icon: "fa-magic", mal_id: 37 }
+      { name: "Action", icon: "fa-fist-raised", mal_id: 1, image: "images/action.jpg" },
+      { name: "Adventure", icon: "fa-mountain", mal_id: 2, image: "images/adventure.jpg" },
+      { name: "Comedy", icon: "fa-laugh-squint", mal_id: 4, image: "images/comedy.jpg" },
+      { name: "Drama", icon: "fa-theater-masks", mal_id: 8, image: "images/drama.jpg" },
+      { name: "Fantasy", icon: "fa-dragon", mal_id: 10, image: "images/fantasy.jpg" },
+      { name: "Horror", icon: "fa-ghost", mal_id: 14, image: "images/horror.jpg" },
+      { name: "Mystery", icon: "fa-search", mal_id: 7, image: "images/mystery.jpg" },
+      { name: "Romance", icon: "fa-heart", mal_id: 22, image: "images/romance.jpg" },
+      { name: "Sci-Fi", icon: "fa-rocket", mal_id: 24, image: "images/scifi.jpg" },
+      { name: "Slice of Life", icon: "fa-home", mal_id: 36, image: "images/sliceoflife.jpg" },
+      { name: "Sports", icon: "fa-running", mal_id: 30, image: "images/sports.jpg" },
+      { name: "Supernatural", icon: "fa-magic", mal_id: 37, image: "images/supernatural.jpg" }
     ];
-
+  
     const genresGrid = document.getElementById('genresGrid');
-    genresGrid.innerHTML = genres.map(genre => `
-        <div class="genre-card" onclick="fetchAnimeByGenre(${genre.mal_id}, '${genre.name}')">
-            <i class="fas ${genre.icon}"></i>
-            <h3>${genre.name}</h3>
+    genresGrid.innerHTML = '';
+  
+    genres.forEach((genre) => {
+      const genreCard = document.createElement('div');
+      genreCard.className = 'genre-card';
+      genreCard.onclick = () => fetchAnimeByGenre(genre.mal_id, genre.name);
+      genreCard.innerHTML = `
+        <img src="${genre.image}" alt="${genre.name}" class="genre-bg-image"/>
+        <div class="genre-overlay">
+          <i class="fas ${genre.icon}"></i>
+          <h3>${genre.name}</h3>
         </div>
-    `).join('');
-}
+      `;
+      genresGrid.appendChild(genreCard);
+    });
+  }
+  
+  // Ensure genre results are sorted by score descending
+  async function fetchAnimeByGenre(genreId, genreName) {
+    try {
+      currentGenre = genreName;
+      const genreResults = document.getElementById('genreResults');
+      genreResults.innerHTML = '<div class="loading-spinner"></div>';
+      genreResults.classList.add('active');
+  
+      const response = await fetch(`https://api.jikan.moe/v4/anime?genres=${genreId}&order_by=score&sort=desc&limit=12`);
+      const data = await response.json();
+  
+      if (data.data && data.data.length > 0) {
+        displayGenreResults(data.data, genreName);
+      } else {
+        genreResults.innerHTML = `
+          <div class="no-results">
+            <i class="fas fa-search"></i>
+            <p>No anime found in ${genreName} genre</p>
+          </div>
+        `;
+      }
+  
+      setTimeout(() => {
+        genreResults.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
+    } catch (error) {
+      console.error('Error fetching anime by genre:', error);
+      document.getElementById('genreResults').innerHTML = `
+        <div class="error-message">
+          <i class="fas fa-exclamation-triangle"></i>
+          <p>Error loading ${genreName} anime. Please try again.</p>
+        </div>
+      `;
+    }
+  }
+  
 
 // Fetch anime by genre
 async function fetchAnimeByGenre(genreId, genreName) {
